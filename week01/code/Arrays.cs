@@ -8,12 +8,23 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // We have two variables: number and length and we want number to multiply length times.
+        // For that, we need to create an array with the length size, start a for cycle 
+        // with a new variable where it iterates since 0 up to length, and if this new variable 
+        // is < than length, we multiply number by that new variable and return the result.
 
-        return []; // replace this return statement with your own
+        // create an array of size length
+        double[] resultado = new double[length];
+
+        // create a for cycle to iterate from 0 to length
+        for (int i = 0; i < length; i++)
+        {
+            // multiply the number by the position and save it
+            resultado[i] = number * (i + 1);
+        }
+
+        // return the result
+        return resultado;
     }
 
     /// <summary>
@@ -24,10 +35,21 @@ public static class Arrays
     /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
+    // We want to loop 'amount' times. In each loop, we take the last element 
+    // of the list, remove it from the end, and insert it at the beginning (index 0) 
+    // so the rest of the list shifts automatically.
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //  Loop 'amount' times to rotate the list step by step
+        for (int i = 0; i < amount; i++)
+        {
+            //  get the last element of the list
+            int lastElement = data[data.Count - 1];
+
+            //  remove the last element from its current position
+            data.RemoveAt(data.Count - 1);
+
+            //  insert that last element at the beginning of the list (index 0)
+            data.Insert(0, lastElement);
+        }
     }
 }
