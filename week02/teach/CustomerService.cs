@@ -14,6 +14,11 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
+        var csInvalid = new CustomerService(0);
+        Console.WriteLine($"Invalid input test: {csInvalid}");
+
+        var csValid = new CustomerService(5);
+        Console.WriteLine($"Valid input test: {csValid}");
 
         // Defect(s) Found: 
 
@@ -25,6 +30,23 @@ public class CustomerService {
         Console.WriteLine("Test 2");
 
         // Defect(s) Found: 
+
+        Console.WriteLine("=================");
+
+        // Add more Test Cases As Needed Below
+        // Test 4
+        // Scenario: Serve a customer when there is a customer in the queue.
+        // Expected Result: The first customer should be dequeued and their details displayed.
+        Console.WriteLine("Test 4");
+        var csService = new CustomerService(3);
+
+        csService._queue.Add(new Customer("Alice", "A001", "Internet not working"));
+        csService._queue.Add(new Customer("Bob", "A002", "Password reset"));
+
+        Console.WriteLine($"Before serving: {csService}");
+        csService.ServeCustomer();
+        Console.WriteLine($"After serving: {csService}");
+        // Defect(s) Found: ServeCustomer removes the first customer before retrieving them, causing it to display and serve the wrong customer.
 
         Console.WriteLine("=================");
 
@@ -88,9 +110,10 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
+       
         var customer = _queue[0];
         Console.WriteLine(customer);
+        _queue.RemoveAt(0);
     }
 
     /// <summary>
