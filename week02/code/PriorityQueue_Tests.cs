@@ -8,7 +8,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: The Dequeue function shall remove the item with the highest priority
     // Expected Result: maria pedro juan
-    // Defect(s) Found: 
+    // Defect(s) Found: The implementation did not check the last item in the queue when searching for the highest priority.
     public void TestPriorityQueue_1()
     {
         var priorityQueue = new PriorityQueue();
@@ -23,7 +23,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: If there are more than one item with the highest priority, then the item closest to the front of the queue will be removed
     // Expected Result: juan pedro maria
-    // Defect(s) Found: 
+    // Defect(s) Found: The implementation used >= instead of > when comparing priorities,
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
@@ -39,7 +39,7 @@ public class PriorityQueueTests
     [TestMethod]
 // Scenario: The queue is empty
 // Expected Result: Show an error message.
-// Defect(s) Found:
+// Defect(s) Found: No defects found.
     public void TestPriorityQueue_3()
     {
         var priorityQueue = new PriorityQueue();
@@ -52,15 +52,15 @@ public class PriorityQueueTests
     [TestMethod]
 // Scenario: Verify that Enqueue adds items to the back of the queue.
 // Expected Result: Items appear in the order they were added.
-// Defect(s) Found:
+// Defect(s) Found: The original implementation did not remove the dequeued item from the queue causing the same item to be returned repeatedly.
     public void TestPriorityQueue_4()
     {
         var priorityQueue = new PriorityQueue();
         priorityQueue.Enqueue("Juan", 3);
         priorityQueue.Enqueue("Pedro", 8);
         priorityQueue.Enqueue("Maria", 5);
-        Assert.AreEqual("Juan", priorityQueue.Dequeue());
         Assert.AreEqual("Pedro", priorityQueue.Dequeue());
         Assert.AreEqual("Maria", priorityQueue.Dequeue());
+        Assert.AreEqual("Juan", priorityQueue.Dequeue());
     }
 }
