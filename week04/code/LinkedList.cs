@@ -33,6 +33,19 @@ public class LinkedList : IEnumerable<int>
     public void InsertTail(int value)
     {
         // TODO Problem 1
+         Node problem1 = new(value);
+        if (_head is null)
+        {
+            _head = problem1;
+            _tail = problem1;
+        }
+
+        else
+        {
+            problem1.Prev = _tail;
+            _tail!.Next = problem1;
+            _tail = problem1;
+        } 
     }
 
 
@@ -65,6 +78,16 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+        if (_head == _tail)
+        {
+            _head = null;
+            _tail = null;
+        }
+        else if (_head is not null)
+        {
+            _tail!.Prev!.Next = null; 
+            _tail = _tail!.Prev; 
+        }
     }
 
     /// <summary>
